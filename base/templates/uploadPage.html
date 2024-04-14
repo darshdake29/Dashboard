@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload File</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/upload.css') }}?v={{ timestamp }}">
+</head>
+<body>
+    <div class="overlay loading-overlay" id="loading-overlay"></div>
+    <header>
+        <div class="logo-container">
+            <!-- <img src="{{ url_for('static', filename='images/logo1.png') }}" alt="Logo"> -->
+            <span>ECOPATROL</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/dashboard">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <form id="uploadForm" action="/upload-file" method="post" enctype="multipart/form-data">
+            <label id="select-model"><h3>Select Model: </h3></label>
+            <div class="model-select">
+                <input type="radio" id="option1" name="detectionModel" value="cattle" class="radio-button-input">
+                <label for="option1" class="radio-button-label">Cattle Detection</label>
+                <input type="radio" id="option2" name="detectionModel" value="pothole" class="radio-button-input">
+                <label for="option2" class="radio-button-label">Pothole Detection</label>
+                <input type="radio" id="option3" name="detectionModel" value="garbage" class="radio-button-input">
+                <label for="option3" class="radio-button-label">Garbage Detection</label>
+            </div>
+            <div class="dropzone-box">
+                <div class="file-upload">
+                    <h2>Upload and attach a file:</h2>
+                    <p>Click to upload</p>
+                    <div class="dropzone-area">
+                        <div class="file-upload-icon"></div>
+                        <div class="loader" id="loader"></div>
+                        <input type="file" required id="upload-file" name="uploadedFile" onchange="updateFileName(this)">
+                        <p class="file-info">No File Selected</p>
+                    </div>
+                    <div class="dropzone-actions">
+                        <button type="reset">Cancel</button>
+                        <button id="submit-button" type="submit">Upload</button>
+                    </div>
+                </div>
+            </div>
+            <div class="link-buttons">
+                <div>
+                    <a href="/dashboard" class="link-button">Back</a>
+                </div>
+                <div>
+                    <a href="/view" class="link-button">View</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/upload.js')}}?v={{ timestamp }}"></script>
+</body>
+</html>

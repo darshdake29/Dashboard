@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/view.css') }}">
+    <title>Detection Data</title>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <span>ECOPATROL</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/upload">Upload</a></li>
+                <li><a href="/dashboard">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h2>Detection Data</h2>
+    <div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Sr.No.</th>
+                <th>Input File</th>
+                <th>Output File</th>
+                <th>File Name</th>
+                <th>Detection Type</th>                
+                <th>Detection Datetime</th>
+                <th>Detection Stats</th>
+                <!-- <th>Created On</th>
+                <th>Modified On</th>
+                <th>Created By</th>
+                <th>Modified By</th> -->
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for detection_vo, login_vo in
+            detection_vo_list %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>
+                    <a href="/view-file?path={{ detection_vo
+                .input_file_path }}" class="view-button">View</a>
+                </td>
+                <td><a href="/view-file?path={{ detection_vo
+                .output_file_path }}" class="view-button">View</a></td>
+                <td>{{ detection_vo.output_file_path.split('/')[-1] }}</td>
+                <td>{{ detection_vo.detection_type }}</td>
+                <td>{{ detection_vo.detection_datetime }}</td>
+                <td>
+                    {% for key in detection_vo.detection_stats %}
+                        {% if key == 'is_garbage' %}
+                            Garbage Detected:
+                            {% if detection_vo.detection_stats[key] == True %}
+                                Yes
+                            {% else %}
+                                No
+                            {% endif %}
+                        {% elif key == 'pothole_counts' %}
+                            Pothole Counts: {{ detection_vo.detection_stats[key] }}
+                        {% elif key == 'cattle_counts' %}
+                            Cattle Counts: {{ detection_vo
+                            .detection_stats[key] }}
+                        {% elif key == 'minimum_cattle_counts' %}
+                            Minimum Cattle Counts: {{ detection_vo
+                            .detection_stats[key] }} <br>
+                        {% elif key == 'maximum_cattle_counts' %}
+                            Maximum Cattle Counts: {{ detection_vo
+                            .detection_stats[key] }}
+                        {% elif key == 'minimum_pothole_counts' %}
+                            Minimum Pothole Counts: {{ detection_vo
+                            .detection_stats[key] }} <br>
+                        {% elif key == 'maximum_pothole_counts' %}
+                            Maximum Pothole Counts: {{ detection_vo
+                            .detection_stats[key] }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <!-- <td>{{ detection_vo.created_on }}</td>
+                <td>{{ detection_vo.modified_on }}</td>
+                <td>{{ login_vo.login_username }}</td>
+                <td>{{ login_vo.login_username }}</td> -->
+                <td><a href="/delete?detection_id={{ detection_vo.detection_id
+                        }}"
+                       class="delete-button">Delete</a></td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</body>
+</html>

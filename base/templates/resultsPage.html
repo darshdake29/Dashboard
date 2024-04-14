@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/result.css') }}?v={{ timestamp }}">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <span>ECOPATROL</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/dashboard">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="main-container">
+        <div class="file-container">
+            {% if file_type == 'image' %}
+                <div class="result-item">
+                    <img class="result-image" width="800" height="500"
+                         src="{{ url_for('static', filename='outputs/' +
+                         detection_vo.output_file_path.split('/')[-1]) }}"
+                         alt="Annotated Image">
+                </div>
+            {% elif file_type == 'video' %}
+                <div class="result-item">
+                    <video class="result-video" id="videoPlayer" width="800" height="500" controls>
+                        <source src="{{ url_for('static', filename='outputs/' + detection_vo.output_file_path.split('/')[-1]) }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            {% endif %}
+        </div>
+        <div class="detection-stats">
+
+            {{ detection_vo.detection_stats }}
+            {% for key in detection_vo.detection_stats %}
+                {% if key == 'is_garbage' %}
+                    Garbage Detected:
+                    {% if detection_vo.detection_stats[key] == True %}
+                        Yes
+                    {% else %}
+                        No
+                    {% endif %}
+                {% elif key == 'pothole_counts' %}
+                    Pothole Counts: {{ detection_vo.detection_stats[key] }}
+                {% elif key == 'cattle_counts' %}
+                    Cattle Counts: {{ detection_vo
+                    .detection_stats[key] }}
+                {% elif key == 'minimum_cattle_counts' %}
+                    Minimum Cattle Counts: {{ detection_vo
+                    .detection_stats[key] }} <br>
+                {% elif key == 'maximum_cattle_counts' %}
+                    Maximum Cattle Counts: {{ detection_vo
+                    .detection_stats[key] }}
+                {% elif key == 'minimum_pothole_counts' %}
+                    Minimum Pothole Counts: {{ detection_vo
+                    .detection_stats[key] }} <br>
+                {% elif key == 'maximum_pothole_counts' %}
+                    Maximum Pothole Counts: {{ detection_vo
+                    .detection_stats[key] }}
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="button-container">
+            <a class="link-button" href="/upload">Upload Again</a>
+            <a class="link-button" href="{{ url_for('static',
+                    filename='outputs/' + detection_vo.output_file_path.split('/')[-1]) }}" download>Download</a>
+        </div>
+    </div>
+
+</body>
+</html>

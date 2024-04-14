@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}?v={{ timestamp }}">
+</head>
+<body>
+
+    <div class="my-div">
+    <p><b><h1>Login Here</h1></b></p>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+                {% for message in messages %}
+                    <h3 style="color: red;">{{ message }}</h3>
+                {% endfor %}
+        {% endif %}
+      {% endwith %}
+        <form action="/login" method="post">
+            <table>
+                <tr>
+                    <td>
+                        <label for="loginUsername"><h3>Username:</h3></label>
+                        <div class="input-field">
+                            <input type="text" name="loginUsername" placeholder="username" value="admin">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="loginPassword"><h3>Password:</h3></label>
+                        <div class="input-field">
+                            <input type="password" name="loginPassword"
+                                   placeholder="password" value="admin@123">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button>Login</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

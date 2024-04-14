@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/showFile.css') }}?v={{ timestamp }}">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <span>ECOPATROL</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/dashboard">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="main-container">
+        Filename: {{ path.split('/')[-1] }}
+        <div class="file-container">
+            {% if path.split('.')[-1] in ['jpg', 'png', 'jpeg'] %}
+                <div class="result-item">
+                    <img class="result-image"
+                         src="{{ url_for('static', filename=path.split('/')
+                         [-2] + '/' + path.split('/')[-1]) }}"
+                         alt="Annotated Image">
+                </div>
+            {% elif file_type == 'video' %}
+                <div class="result-item">
+                    <video class="result-video" id="videoPlayer" width="800" height="500" controls>
+                        <source src="{{ url_for('static', filename=path.split('/')
+                         [-2] + '/' + path.split('/')[-1]) }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            {% endif %}
+        </div>
+        <div class="button-container">
+            <a class="link-button" href="/upload">Upload Again</a>
+        </div>
+    </div>
+
+</body>
+</html>

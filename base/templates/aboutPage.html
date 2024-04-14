@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <!-- <img src="{{ url_for('static', filename='images/logo1.png') }}" alt="Logo"> -->
+            <span>ECOPATROL</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/dashboard">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+
+        <section>
+            <h2>Overview of Project</h2>
+            <p>The Pothole, Cattle, and Garbage Detection Project is a ground-breaking programme that aims to improve urban safety, cleanliness, and infrastructure management by leveraging innovative technologies. This project addresses essential difficulties in urban contexts, such as traffic safety, stray animal management, and garbage management, by leveraging computer vision, machine learning, and IoT (Internet of Things) technology.</p>
+        </section>
+
+        <section>
+            <h2>Key Objectives</h2>
+            <ul>
+                <li>Pothole Detection: Identifying and monitoring potholes on roadways to avoid accidents, car damage, and traffic congestion.</li>
+                <li>Garbage Detection: Identifying and treating instances of rubbish accumulation in urban areas in order to improve cleanliness and environmental sustainability.</li>
+                <li>Cattle Detection: Detecting stray cattle on roadways and public spaces in order to improve traffic safety and avoid accidents.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Data Collection</h2>
+            <p>To train the models for pothole, garbage, and cattle detection, we used a combination of datasets, including Roboflow, custom datasets, and the COCO dataset.</p>
+            <p><strong>Roboflow Dataset:</strong> Roboflow gives users access to a wide selection of datasets appropriate for training computer vision models, including those specifically curated for item detection tasks such as pothole, rubbish, and cow detection. These datasets frequently include annotated photographs and videos shot in various urban settings, giving a thorough training set for the algorithms.</p>
+            <p><strong>Custom datasets:</strong> Custom datasets were gathered using a variety of methods, including the installation of cameras and sensors in metropolitan areas, crowdsourced data collection activities, and partnership with local governments and community organisations. These unique datasets were adapted to specific geographical areas and urban environments, ensuring that the models were trained using relevant and representative data.</p>
+            <p><strong>COCO Dataset:</strong> The COCO dataset is a popular benchmark dataset for object detection tasks. It contains a vast collection of photos annotated with object instances from 80 distinct categories. While not specifically targeting potholes, garbage, or animals, the COCO dataset supplied extra training data for generic item detection, enhancing the models' capacity to detect and classify things in urban settings.</p>
+        </section>
+
+        <section>
+            <h2>Challenges</h2>
+            <p><strong>Cattle detection:</strong> Stray cattle pose a significant risk to urban safety, often causing accidents and traffic disruptions. Identifying and managing stray cattle can mitigate these risks and enhance road safety.</p>
+            <p><strong>Potholes Detection:</strong> Potholes on roads can lead to vehicle damage, accidents, and traffic congestion. Detecting and repairing potholes promptly can prevent accidents and ensure smooth traffic flow.</p>
+            <p><strong>Garbage Detection:</strong> Garbage accumulation in urban areas contributes to environmental pollution, health hazards, and aesthetic degradation. Effective garbage detection and management are essential for maintaining clean and healthy urban environments.</p>
+        </section>
+
+        <section>
+            <h2>Solutions</h2>
+            <p><strong>Real-time Detection:</strong> The project uses computer vision and machine learning techniques to detect wandering livestock, potholes, and waste.</p>
+            <p><strong>Data-driven Decision Making:</strong> The initiative collects and analyses data on identified impediments, allowing for data-driven decision-making in urban planning, infrastructure maintenance, and resource allocation.</p>
+            <p><strong>Citizen Engagement:</strong> The project promotes community participation by offering forums for reporting and tracking urban impediments. Citizens can help to recognize and resolve concerns, promoting community participation and collaboration.</p>
+        </section>
+
+        <section>
+            <h2>Why/Which Technologies Used</h2>
+            <p>The pothole, garbage, and cattle detection project used a variety of methods to enable precise and efficient detection of these things in urban areas. Technologies were selected based on their capabilities, suitability for the task, and conformity with project objectives.</p>
+            <p><strong>Computer Vision:</strong> Computer vision technology, particularly deep learning-based techniques, was essential in spotting potholes, waste, and animals in photos or video streams. Using Convolutional Neural Networks (CNNs) and object identification techniques, the models were able to accurately recognize and classify objects.</p>
+            <p><strong>Machine learning models:</strong> Object detection tests were performed using machine learning models such as YOLOv8 (You Only Look Once) and Faster R-CNN (Region-based Convolutional Neural Networks). These models were chosen for their capacity to analyze massive amounts of data while detecting many objects in real-time.</p>
+            <p><strong>OpenCV-Python:</strong> OpenCV-Python, an open-source computer vision library, offers necessary tools and functions for image processing, feature extraction, and object detection. Its large set of algorithms and utilities made it easier to complete numerous project tasks, such as image and video frame preprocessing.</p>
+            <p><strong>Ultralytics:</strong> Ultralytics provided cutting-edge deep learning solutions specifically for computer vision problems. The platform included pre-trained models, training scripts, and item detection utilities, making it an invaluable resource for developing and refining detection models for potholes, waste, and animals.</p>
+            <p><strong>Roboflow:</strong> Roboflow offered a comprehensive platform for maintaining and augmenting picture collections, creating annotations, and preparing images for training. Its user-friendly interface and interaction with common deep learning frameworks made data preparation easier and model construction faster.</p>
+            <p><strong>Python & Flask:</strong> The detection systems' backends were developed and deployed using the Python programming language and the Flask web framework. Flask made it easier to create RESTful APIs for accepting image or video input, processing queries, and delivering detection results to client apps.</p>
+            <p><strong>MySQL Database:</strong> The MySQL database was used to store and manage object detection-related data such as annotations, training data, and detection outcomes. Its relational database format and scalability made it ideal for dealing with massive datasets and allowing concurrent access.</p>
+        </section>
+
+        <section>
+            <h2>Benefits</h2>
+            <p><strong>Enhanced Urban Safety:</strong> By recognizing and eliminating impediments like potholes and stray livestock, we help to improve road safety and reduce accidents in urban settings.</p>
+            <p><strong>Cleaner Environment:</strong> Our project contributes to the identification and management of rubbish accumulation, as well as the promotion of cleanliness and environmental sustainability in cities.</p>
+            <p><strong>Efficient Resource Allocation:</strong> By using real-time detection and data-driven decision-making, we can optimize resource allocation for urban planning, infrastructure maintenance, and public safety efforts.</p>
+        </section>
+
+    </div>
+
+    
+</body>
+</html>
